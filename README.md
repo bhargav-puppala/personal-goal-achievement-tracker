@@ -181,7 +181,7 @@ flutter pub get
 # 3. Verify static analysis (Zero errors/warnings)
 flutter analyze
 
-# 4. Run automated test suite (21 passing tests)
+# 4. Run automated test suite (23 passing tests)
 flutter test
 
 # 5. Launch application on available device
@@ -199,7 +199,7 @@ flutter run -d android
 
 ## 9. Automated Testing Summary
 
-A comprehensive test suite of **21 unit and widget tests** verifies the application's core logic:
+A comprehensive test suite of **23 unit and widget tests** verifies the application's core logic:
 
 - `test/unit/goal_and_milestone_test.dart`
   - Zero-milestone edge cases (0% progress, safe from NaN).
@@ -222,6 +222,8 @@ A comprehensive test suite of **21 unit and widget tests** verifies the applicat
   - Goal deletion and cleanup of associated records.
   - Reinitialization persistence across fresh provider instances.
   - Live analytics calculations (active, completed, rates, distributions).
+  - JSON Export and Import roundtrip data integrity.
+  - Malformed backup rejection without throwing uncaught exceptions.
 - `test/widget_test.dart`
   - Navigation shell rendering with Home, Analytics, and Settings tabs.
   - Tab switching interaction and state preservation.

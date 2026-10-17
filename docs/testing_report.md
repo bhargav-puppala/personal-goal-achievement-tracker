@@ -3,8 +3,8 @@
 **Project:** Personal Goal Achievement Tracker  
 **Student Roll Number:** `24PA1A05I4`  
 **Execution Environment:** Flutter 3.41.4 / Dart 3.11.1  
-**Total Automated Tests:** 21  
-**Passed:** 21 (100%)  
+**Total Automated Tests:** 23  
+**Passed:** 23 (100%)  
 **Failed:** 0  
 
 ---
@@ -43,6 +43,8 @@ The quality assurance strategy utilizes an automated test pyramid comprising:
 | 19 | `streak_calculator_test.dart` | Missed day break in consistency resets current streak to 0 | **PASSED** | < 5ms |
 | 20 | `streak_calculator_test.dart` | Multiple completions on the same day deduplicate and count as one day | **PASSED** | < 5ms |
 | 21 | `widget_test.dart` | Dashboard loads and displays navigation shell with 3 tabs and roll number | **PASSED** | ~1.1s |
+| 22 | `goal_provider_test.dart` | JSON Export and Import roundtrip preserves data | **PASSED** | < 10ms |
+| 23 | `goal_provider_test.dart` | Malformed JSON backup import fails gracefully without crashing | **PASSED** | < 10ms |
 
 ---
 

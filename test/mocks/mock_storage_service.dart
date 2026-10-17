@@ -56,6 +56,9 @@ class MockStorageService implements IStorageService {
   @override
   Future<String> exportBackupJson() async {
     return jsonEncode({
+      'app': 'Personal Goal Achievement Tracker',
+      'studentRollNumber': '24PA1A05I4',
+      'version': '1.0.0',
       'goals': _goals.map((g) => g.toJson()).toList(),
       'activity': _records.map((a) => a.toJson()).toList(),
       'dailyFocus': _focusIds,

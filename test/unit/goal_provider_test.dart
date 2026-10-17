@@ -201,5 +201,40 @@ void main() {
       expect(dist['Academic'], 1);
       expect(dist['Health and Well-being'], 1);
     });
+
+    test('JSON Export and Import roundtrip preserves data', () async {
+      await provider.createGoal(
+        title: 'Export Goal',
+        category: 'Career',
+        initialMilestoneTitles: ['Milestone 1'],
+      );
+
+      final exportedJson = await provider.exportBackup();
+      expect(exportedJson.contains('Export Goal'), true);
+      expect(exportedJson.contains('24PA1A05I4'), true);
+
+      // Clear all
+      await provider.clearAllData();
+      expect(provider.goals.isEmpty, true);
+
+      // Import
+      final success = await provider.importBackup(exportedJson);
+      expect(success, true);
+      expect(provider.goals.length, 1);
+      expect(provider.goals.first.title, 'Export Goal');
+    });
+
+    test(
+      'Malformed JSON backup import fails gracefully without crashing',
+      () async {
+        final successCorrupt = await provider.importBackup(
+          'not a valid json {]',
+        );
+        expect(successCorrupt, false);
+
+        final successEmpty = await provider.importBackup('{"empty": true}');
+        expect(successEmpty, false);
+      },
+    );
   });
 }
