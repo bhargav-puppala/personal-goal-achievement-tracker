@@ -9,6 +9,8 @@ class OverviewCards extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final isDark = theme.brightness == Brightness.dark;
     final provider = context.watch<GoalProvider>();
     final streak = provider.streak;
 
@@ -18,27 +20,32 @@ class OverviewCards extends StatelessWidget {
         if (streak.currentStreak > 0)
           Container(
             margin: const EdgeInsets.only(bottom: 12),
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
             decoration: BoxDecoration(
-              gradient: LinearGradient(
-                colors: [
-                  AppColors.fireStreak.withValues(alpha: 0.15),
-                  AppColors.warning.withValues(alpha: 0.1),
-                ],
-              ),
+              color: isDark
+                  ? AppColors.darkSurfaceSubtle
+                  : AppColors.surfaceSubtle,
               borderRadius: BorderRadius.circular(14),
               border: Border.all(
-                color: AppColors.fireStreak.withValues(alpha: 0.3),
+                color: AppColors.warning.withValues(alpha: 0.35),
+                width: 1,
               ),
             ),
             child: Row(
               children: [
-                const Icon(
-                  Icons.local_fire_department_rounded,
-                  color: AppColors.fireStreak,
-                  size: 24,
+                Container(
+                  padding: const EdgeInsets.all(7),
+                  decoration: BoxDecoration(
+                    color: AppColors.warning.withValues(alpha: 0.15),
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: const Icon(
+                    Icons.local_fire_department_rounded,
+                    color: AppColors.warning,
+                    size: 20,
+                  ),
                 ),
-                const SizedBox(width: 10),
+                const SizedBox(width: 12),
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -48,18 +55,19 @@ class OverviewCards extends StatelessWidget {
                         style: const TextStyle(
                           fontSize: 14,
                           fontWeight: FontWeight.w700,
-                          color: AppColors.fireStreak,
+                          color: AppColors.warning,
                         ),
                       ),
+                      const SizedBox(height: 2),
                       Text(
                         streak.completedToday
                             ? 'Great job! You made progress today.'
                             : 'Complete any milestone today to extend your streak!',
                         style: TextStyle(
                           fontSize: 12,
-                          color: Theme.of(context).brightness == Brightness.dark
+                          color: isDark
                               ? AppColors.darkTextSecondary
-                              : AppColors.lightTextSecondary,
+                              : AppColors.textSecondary,
                         ),
                       ),
                     ],
@@ -77,7 +85,7 @@ class OverviewCards extends StatelessWidget {
                 title: 'Active Goals',
                 value: provider.activeGoalsCount.toString(),
                 icon: Icons.flag_rounded,
-                iconColor: AppColors.info,
+                iconColor: AppColors.slateBlue,
               ),
             ),
             const SizedBox(width: 10),
@@ -86,7 +94,7 @@ class OverviewCards extends StatelessWidget {
                 title: 'Completed',
                 value: provider.completedGoalsCount.toString(),
                 icon: Icons.check_circle_rounded,
-                iconColor: AppColors.accent,
+                iconColor: AppColors.success,
               ),
             ),
           ],
@@ -98,7 +106,7 @@ class OverviewCards extends StatelessWidget {
               child: _MetricCard(
                 title: 'Overdue',
                 value: provider.overdueGoalsCount.toString(),
-                icon: Icons.warning_amber_rounded,
+                icon: Icons.schedule_rounded,
                 iconColor: AppColors.error,
               ),
             ),
@@ -107,7 +115,7 @@ class OverviewCards extends StatelessWidget {
               child: _MetricCard(
                 title: "Today's Actions",
                 value: provider.todayMilestoneCompletionCount.toString(),
-                icon: Icons.bolt_rounded,
+                icon: Icons.task_alt_rounded,
                 iconColor: AppColors.warning,
               ),
             ),
@@ -147,7 +155,7 @@ class _MetricCard extends StatelessWidget {
                 color: iconColor.withValues(alpha: 0.12),
                 borderRadius: BorderRadius.circular(10),
               ),
-              child: Icon(icon, color: iconColor, size: 20),
+              child: Icon(icon, color: iconColor, size: 18),
             ),
             const SizedBox(width: 12),
             Expanded(
@@ -160,6 +168,10 @@ class _MetricCard extends StatelessWidget {
                     style: theme.textTheme.titleMedium?.copyWith(
                       fontWeight: FontWeight.w800,
                       fontSize: 18,
+                      letterSpacing: -0.3,
+                      color: isDark
+                          ? AppColors.darkTextPrimary
+                          : AppColors.textPrimary,
                     ),
                   ),
                   const SizedBox(height: 2),
@@ -172,7 +184,7 @@ class _MetricCard extends StatelessWidget {
                       fontWeight: FontWeight.w500,
                       color: isDark
                           ? AppColors.darkTextSecondary
-                          : AppColors.lightTextSecondary,
+                          : AppColors.textSecondary,
                     ),
                   ),
                 ],

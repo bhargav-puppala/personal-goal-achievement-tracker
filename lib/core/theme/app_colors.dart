@@ -1,51 +1,69 @@
 import 'package:flutter/material.dart';
 
 /// Design tokens and semantic colors for the Personal Goal Achievement Tracker.
+/// Warm, minimal, premium productivity-app palette (sage, neutral, slate).
 class AppColors {
-  // Brand Primary (Deep Indigo / Dark Navy)
-  static const Color primary = Color(0xFF1E293B); // Slate 800
-  static const Color primaryDark = Color(0xFF0F172A); // Slate 900
-  static const Color primaryLight = Color(0xFF334155); // Slate 700
+  // Main Natural Palette Tokens
+  static const Color background = Color(0xFFF7F6F2); // Warm off-white
+  static const Color surface = Color(0xFFFFFFFF); // Card and surface pure white
+  static const Color surfaceSubtle = Color(0xFFF2F1EC); // Soft warm neutral
+  static const Color border = Color(0xFFE4E3DD); // Soft gray border
+  static const Color textPrimary = Color(0xFF252A31); // Deep charcoal
+  static const Color textSecondary = Color(0xFF747B83); // Muted gray
+  static const Color textMuted = Color(0xFF9AA0A6); // Soft gray muted
 
-  // Brand Accent (Emerald / Teal for success and progress)
-  static const Color accent = Color(0xFF10B981); // Emerald 500
-  static const Color accentLight = Color(0xFF34D399); // Emerald 400
-  static const Color accentDark = Color(0xFF059669); // Emerald 600
+  // Primary Accent: Muted Sage Green
+  static const Color sage = Color(0xFF6B8F71); // Muted sage green
+  static const Color sageDark = Color(0xFF527558); // Dark sage (hover / pressed)
+  static const Color sagePale = Color(0xFFE8EFE7); // Pale sage (subtle background)
+  static const Color sageLight = Color(0xFF8BAA90); // Light sage tint
 
-  // Supporting Accent (Amber / Orange for pending & streak)
-  static const Color warning = Color(0xFFF59E0B);
-  static const Color fireStreak = Color(0xFFEA580C);
-  static const Color error = Color(0xFFEF4444);
-  static const Color info = Color(0xFF3B82F6);
+  // Secondary Accent & Status Semantics
+  static const Color slateBlue = Color(0xFF71869B); // Muted slate blue
+  static const Color success = Color(0xFF568160); // Natural green
+  static const Color warning = Color(0xFFC18A43); // Muted amber
+  static const Color error = Color(0xFFB85C56); // Muted brick red
+  static const Color fireStreak = Color(0xFFC18A43); // Warm amber streak (no neon)
 
-  // Light Theme Surfaces
-  static const Color lightBackground = Color(0xFFF8FAFC);
-  static const Color lightSurface = Color(0xFFFFFFFF);
-  static const Color lightSurfaceSubtle = Color(0xFFF1F5F9);
-  static const Color lightBorder = Color(0xFFE2E8F0);
-  static const Color lightTextPrimary = Color(0xFF0F172A);
-  static const Color lightTextSecondary = Color(0xFF64748B);
-  static const Color lightTextMuted = Color(0xFF94A3B8);
+  // Primary Aliases
+  static const Color primary = sage;
+  static const Color primaryDark = sageDark;
+  static const Color primaryLight = sageLight;
+  static const Color accent = sage;
+  static const Color accentLight = sageLight;
+  static const Color accentDark = sageDark;
+  static const Color info = slateBlue;
 
-  // Dark Theme Surfaces
-  static const Color darkBackground = Color(0xFF0B0F19);
-  static const Color darkSurface = Color(0xFF131B2E);
-  static const Color darkSurfaceSubtle = Color(0xFF1E293B);
-  static const Color darkBorder = Color(0xFF26334D);
-  static const Color darkTextPrimary = Color(0xFFF8FAFC);
-  static const Color darkTextSecondary = Color(0xFF94A3B8);
-  static const Color darkTextMuted = Color(0xFF64748B);
+  // Light Aliases
+  static const Color lightBackground = background;
+  static const Color lightSurface = surface;
+  static const Color lightSurfaceSubtle = surfaceSubtle;
+  static const Color lightBorder = border;
+  static const Color lightTextPrimary = textPrimary;
+  static const Color lightTextSecondary = textSecondary;
+  static const Color lightTextMuted = textMuted;
 
-  // Priority Colors
+  // Refined, comfortable Dark Theme (charcoal & warm slate, no pure black, no neon)
+  static const Color darkBackground = Color(0xFF191C20); // Warm deep charcoal
+  static const Color darkSurface = Color(0xFF22262C); // Refined dark surface
+  static const Color darkSurfaceSubtle = Color(0xFF2B3037); // Subtle elevation
+  static const Color darkBorder = Color(0xFF383E46); // Restrained dark border
+  static const Color darkTextPrimary = Color(0xFFEDECE8); // Warm off-white text
+  static const Color darkTextSecondary = Color(0xFF9EA5AD); // Muted soft slate
+  static const Color darkTextMuted = Color(0xFF6F767E); // Restrained muted text
+  static const Color darkAccent = Color(0xFF82A888); // Soft muted sage
+  static const Color darkAccentSubtle = Color(0xFF273429); // Restrained sage backdrop
+
+  // Priority Colors (Muted, natural tones)
   static Color getPriorityColor(String priority) {
     switch (priority.toLowerCase()) {
       case 'high':
-        return const Color(0xFFEF4444); // Red
+        return error; // Muted brick red #B85C56
       case 'medium':
-        return const Color(0xFFF59E0B); // Amber
+        return warning; // Muted amber #C18A43
       case 'low':
       default:
-        return const Color(0xFF10B981); // Emerald
+        return sage; // Muted sage green #6B8F71
     }
   }
 }

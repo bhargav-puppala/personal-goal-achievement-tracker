@@ -47,19 +47,19 @@ class AppConstants {
   static Color getCategoryColor(String category) {
     switch (category) {
       case 'Academic':
-        return const Color(0xFF2563EB); // Royal Blue
+        return const Color(0xFF607B96); // Muted Slate Blue
       case 'Career':
-        return const Color(0xFF7C3AED); // Deep Purple
+        return const Color(0xFF6E748B); // Muted Twilight Charcoal
       case 'Fitness':
-        return const Color(0xFFF97316); // Vibrant Orange
+        return const Color(0xFFB57457); // Warm Terracotta Clay
       case 'Personal':
-        return const Color(0xFFEC4899); // Rose Pink
+        return const Color(0xFFA16E78); // Muted Dusty Rose
       case 'Finance':
-        return const Color(0xFF059669); // Emerald Green
+        return const Color(0xFF698264); // Muted Olive Green
       case 'Health and Well-being':
-        return const Color(0xFF06B6D4); // Cyan / Teal
+        return const Color(0xFF5A8C82); // Muted Sea Sage / Eucalyptus
       default:
-        return const Color(0xFF6B7280); // Cool Grey
+        return const Color(0xFF7A8086); // Soft Cool Stone
     }
   }
 

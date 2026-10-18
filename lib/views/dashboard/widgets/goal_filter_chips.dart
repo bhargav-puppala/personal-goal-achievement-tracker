@@ -107,17 +107,17 @@ class GoalFilterChips extends StatelessWidget {
                               ? AppColors.darkTextSecondary
                               : AppColors.lightTextSecondary),
                   ),
-                  selectedColor: AppColors.primary,
+                  selectedColor: isDark ? AppColors.darkAccent : AppColors.sage,
                   checkmarkColor: Colors.white,
                   showCheckmark: false,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(20),
                     side: BorderSide(
                       color: isSelected
-                          ? AppColors.primary
+                          ? (isDark ? AppColors.darkAccent : AppColors.sage)
                           : (isDark
                                 ? AppColors.darkBorder
-                                : AppColors.lightBorder),
+                                : AppColors.border),
                     ),
                   ),
                   onSelected: (_) => provider.setSelectedStatus(status),
@@ -135,7 +135,7 @@ class GoalFilterChips extends StatelessWidget {
             children: allCategories.map((category) {
               final isSelected = provider.selectedCategory == category;
               final catColor = category == 'All'
-                  ? AppColors.primary
+                  ? (isDark ? AppColors.darkAccent : AppColors.sage)
                   : AppConstants.getCategoryColor(category);
 
               return Padding(

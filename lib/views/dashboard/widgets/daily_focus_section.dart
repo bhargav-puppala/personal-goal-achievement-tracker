@@ -218,7 +218,7 @@ class DailyFocusSection extends StatelessWidget {
                   ),
                   style: TextButton.styleFrom(
                     visualDensity: VisualDensity.compact,
-                    foregroundColor: AppColors.accent,
+                    foregroundColor: AppColors.sage,
                   ),
                 ),
               ],
@@ -293,24 +293,28 @@ class DailyFocusSection extends StatelessWidget {
                     ),
                     decoration: BoxDecoration(
                       color: isDone
-                          ? AppColors.accent.withValues(alpha: 0.08)
+                          ? (isDark
+                              ? AppColors.darkAccentSubtle
+                              : AppColors.sagePale)
                           : (isDark
-                                ? AppColors.darkSurfaceSubtle
-                                : AppColors.lightSurfaceSubtle),
+                              ? AppColors.darkSurfaceSubtle
+                              : AppColors.surfaceSubtle),
                       borderRadius: BorderRadius.circular(10),
                       border: Border.all(
                         color: isDone
-                            ? AppColors.accent.withValues(alpha: 0.3)
+                            ? (isDark
+                                ? AppColors.darkBorder
+                                : AppColors.sage.withValues(alpha: 0.35))
                             : (isDark
-                                  ? AppColors.darkBorder
-                                  : AppColors.lightBorder),
+                                ? AppColors.darkBorder
+                                : AppColors.border),
                       ),
                     ),
                     child: Row(
                       children: [
                         Checkbox(
                           value: isDone,
-                          activeColor: AppColors.accent,
+                          activeColor: AppColors.sage,
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(5),
                           ),

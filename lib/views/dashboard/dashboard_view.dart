@@ -15,6 +15,72 @@ import 'widgets/goal_filter_chips.dart';
 class DashboardView extends StatelessWidget {
   const DashboardView({super.key});
 
+  Widget _buildSdgBadge(bool isDark) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+      decoration: BoxDecoration(
+        color: isDark ? AppColors.darkAccentSubtle : AppColors.sagePale,
+        borderRadius: BorderRadius.circular(16),
+        border: Border.all(
+          color: isDark ? AppColors.darkBorder : AppColors.border,
+          width: 0.8,
+        ),
+      ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Icon(
+            Icons.school_rounded,
+            size: 14,
+            color: isDark ? AppColors.darkAccent : AppColors.sage,
+          ),
+          const SizedBox(width: 5),
+          Text(
+            'SDG 3 & 4',
+            style: TextStyle(
+              fontSize: 11,
+              fontWeight: FontWeight.w700,
+              color: isDark ? AppColors.darkAccent : AppColors.sageDark,
+              letterSpacing: 0.2,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildNewGoalButton(BuildContext context, {bool isFullWidth = false}) {
+    return SizedBox(
+      width: isFullWidth ? double.infinity : null,
+      height: 40,
+      child: ElevatedButton.icon(
+        onPressed: () {
+          Navigator.of(context).push(
+            MaterialPageRoute(builder: (_) => const GoalFormView()),
+          );
+        },
+        icon: const Icon(Icons.add_rounded, size: 18),
+        label: const Text(
+          'New Goal',
+          style: TextStyle(
+            fontSize: 13,
+            fontWeight: FontWeight.w600,
+            letterSpacing: 0.2,
+          ),
+        ),
+        style: ElevatedButton.styleFrom(
+          backgroundColor: AppColors.sage,
+          foregroundColor: Colors.white,
+          elevation: 0,
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 0),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(12),
+          ),
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -38,77 +104,133 @@ class DashboardView extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                dateString.toUpperCase(),
-                                style: TextStyle(
-                                  fontSize: 11,
-                                  fontWeight: FontWeight.w700,
-                                  letterSpacing: 0.8,
-                                  color: isDark
-                                      ? AppColors.darkTextMuted
-                                      : AppColors.lightTextMuted,
-                                ),
-                              ),
-                              const SizedBox(height: 4),
-                              Text(
-                                'Personal Goal Tracker',
-                                style: theme.textTheme.headlineSmall?.copyWith(
-                                  fontWeight: FontWeight.w800,
-                                  fontSize: 22,
-                                  height: 1.2,
-                                ),
-                              ),
-                            ],
-                          ),
-                          Container(
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 10,
-                              vertical: 5,
-                            ),
-                            decoration: BoxDecoration(
-                              color: AppColors.accent.withValues(alpha: 0.12),
-                              borderRadius: BorderRadius.circular(20),
-                              border: Border.all(
-                                color: AppColors.accent.withValues(alpha: 0.3),
-                              ),
-                            ),
-                            child: const Row(
-                              mainAxisSize: MainAxisSize.min,
+                      // Responsive Header Block
+                      LayoutBuilder(
+                        builder: (context, constraints) {
+                          final isCompact = constraints.maxWidth < 600;
+
+                          if (!isCompact) {
+                            // Desktop / Tablet Layout (>= 600px):
+                            // Title & subtitle on left; SDG Badge and New Goal button aligned on right
+                            return Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Icon(
-                                  Icons.school_rounded,
-                                  size: 14,
-                                  color: AppColors.accent,
-                                ),
-                                SizedBox(width: 4),
-                                Text(
-                                  'SDG 3 & 4',
-                                  style: TextStyle(
-                                    fontSize: 11,
-                                    fontWeight: FontWeight.w700,
-                                    color: AppColors.accent,
+                                Expanded(
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        dateString.toUpperCase(),
+                                        style: TextStyle(
+                                          fontSize: 11,
+                                          fontWeight: FontWeight.w700,
+                                          letterSpacing: 0.8,
+                                          color: isDark
+                                              ? AppColors.darkTextMuted
+                                              : AppColors.textMuted,
+                                        ),
+                                      ),
+                                      const SizedBox(height: 4),
+                                      Text(
+                                        'Personal Goal Tracker',
+                                        style: theme.textTheme.headlineSmall?.copyWith(
+                                          fontWeight: FontWeight.w800,
+                                          fontSize: 22,
+                                          letterSpacing: -0.4,
+                                          height: 1.2,
+                                          color: isDark
+                                              ? AppColors.darkTextPrimary
+                                              : AppColors.textPrimary,
+                                        ),
+                                      ),
+                                      const SizedBox(height: 6),
+                                      Text(
+                                        'Convert your long-term ambitions into manageable daily actions.',
+                                        style: TextStyle(
+                                          fontSize: 13,
+                                          color: isDark
+                                              ? AppColors.darkTextSecondary
+                                              : AppColors.textSecondary,
+                                        ),
+                                      ),
+                                    ],
                                   ),
                                 ),
+                                const SizedBox(width: 16),
+                                Row(
+                                  mainAxisSize: MainAxisSize.min,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    _buildSdgBadge(isDark),
+                                    const SizedBox(width: 10),
+                                    _buildNewGoalButton(context),
+                                  ],
+                                ),
                               ],
-                            ),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(height: 6),
-                      Text(
-                        'Convert your long-term ambitions into manageable daily actions.',
-                        style: TextStyle(
-                          fontSize: 13,
-                          color: isDark
-                              ? AppColors.darkTextSecondary
-                              : AppColors.lightTextSecondary,
-                        ),
+                            );
+                          } else {
+                            // Mobile Compact Layout (< 600px):
+                            // Row 1: Date & Title on left, SDG Badge on right
+                            // Row 2: Subtitle
+                            // Row 3: New Goal button spanning width with centered icon and label
+                            return Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    Expanded(
+                                      child: Column(
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            dateString.toUpperCase(),
+                                            style: TextStyle(
+                                              fontSize: 11,
+                                              fontWeight: FontWeight.w700,
+                                              letterSpacing: 0.8,
+                                              color: isDark
+                                                  ? AppColors.darkTextMuted
+                                                  : AppColors.textMuted,
+                                            ),
+                                          ),
+                                          const SizedBox(height: 2),
+                                          Text(
+                                            'Personal Goal Tracker',
+                                            style: theme.textTheme.headlineSmall?.copyWith(
+                                              fontWeight: FontWeight.w800,
+                                              fontSize: 20,
+                                              letterSpacing: -0.4,
+                                              height: 1.2,
+                                              color: isDark
+                                                  ? AppColors.darkTextPrimary
+                                                  : AppColors.textPrimary,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    const SizedBox(width: 8),
+                                    _buildSdgBadge(isDark),
+                                  ],
+                                ),
+                                const SizedBox(height: 6),
+                                Text(
+                                  'Convert your long-term ambitions into manageable daily actions.',
+                                  style: TextStyle(
+                                    fontSize: 12,
+                                    color: isDark
+                                        ? AppColors.darkTextSecondary
+                                        : AppColors.textSecondary,
+                                  ),
+                                ),
+                                const SizedBox(height: 12),
+                                _buildNewGoalButton(context, isFullWidth: true),
+                              ],
+                            );
+                          }
+                        },
                       ),
                       const SizedBox(height: 20),
 
@@ -129,6 +251,7 @@ class DashboardView extends StatelessWidget {
                             style: theme.textTheme.titleMedium?.copyWith(
                               fontWeight: FontWeight.w800,
                               fontSize: 18,
+                              letterSpacing: -0.2,
                             ),
                           ),
                         ],
@@ -174,7 +297,7 @@ class DashboardView extends StatelessWidget {
                 )
               else
                 SliverPadding(
-                  padding: const EdgeInsets.fromLTRB(20, 0, 20, 80),
+                  padding: const EdgeInsets.fromLTRB(20, 0, 20, 40),
                   sliver: SliverList(
                     delegate: SliverChildBuilderDelegate((context, index) {
                       final goal = goals[index];
@@ -193,18 +316,6 @@ class DashboardView extends StatelessWidget {
                 ),
             ],
           ),
-        ),
-      ),
-      floatingActionButton: FloatingActionButton.extended(
-        onPressed: () {
-          Navigator.of(
-            context,
-          ).push(MaterialPageRoute(builder: (_) => const GoalFormView()));
-        },
-        icon: const Icon(Icons.add_rounded),
-        label: const Text(
-          'New Goal',
-          style: TextStyle(fontWeight: FontWeight.w600),
         ),
       ),
     );
