@@ -3,7 +3,7 @@
 **Student Roll Number:** `24PA1A05I4`  
 **Application Title:** Personal Goal Achievement Tracker  
 **Target Platform:** Flutter (Mobile, Desktop, Web)  
-**SDK Requirement:** Flutter 3.41+ / Dart 3.11+  
+**SDK Requirement:** Flutter SDK compatible with Dart `^3.11.1` (Dart 3.11.1 or later in the 3.x line)
 **State Management:** Provider (6.1.5+)  
 **Design System:** Material 3  
 
@@ -165,15 +165,15 @@ lib/
 ## 8. Prerequisites & Installation
 
 ### Prerequisites
-- Flutter SDK `>=3.0.0` (tested on Flutter `3.41.4`)
-- Dart SDK `>=3.0.0` (tested on Dart `3.11.1`)
+- Flutter SDK with Dart `^3.11.1` support, as specified in `pubspec.yaml` (tested with Flutter 3.41.4 / Dart 3.11.1)
 - Web Browser (Chrome/Edge) or Desktop runner or Android/iOS emulator
 
 ### Setup & Run Commands
 
 ```bash
-# 1. Clone or navigate to the project directory
-cd c:\Users\bharg\Flutter-Project
+# 1. Clone the repository and enter its directory
+git clone https://github.com/bhargav-puppala/personal-goal-achievement-tracker.git
+cd personal-goal-achievement-tracker
 
 # 2. Get dependencies
 flutter pub get
@@ -238,15 +238,13 @@ flutter test
 
 ## 10. Screenshots & UI Demonstration
 
-| Dashboard (Overview & Focus) | Goal Details & Milestones | Analytics & Charts | Settings & SDG Alignment |
-|---|---|---|---|
-| *(Screenshot Placeholder: Home Dashboard with Overview Cards & Daily Focus)* | *(Screenshot Placeholder: Goal Details Screen with Milestones & Progress)* | *(Screenshot Placeholder: Analytics Screen with 7-Day Chart & Categories)* | *(Screenshot Placeholder: Settings with Roll Number 24PA1A05I4 & SDG Info)* |
+Screenshots are not included yet. Capture genuine screenshots from the running application and add them here: Dashboard/Daily Focus, Goal Details/Milestones, Analytics, and Settings/SDG alignment.
 
 ---
 
 ## 11. Known Limitations & Honest Platform Disclosures
 
-- **Platform Native Alarms:** The application runs cross-platform across Web, Windows Desktop, Android, and iOS. On web and desktop environments, system-level background daemon wakeups may be restricted without native service privileges. Therefore, the application implements reliable in-app deadline banners, status pills, and alert reminders alongside standard notification interfaces.
+- **Reminders:** Deadline status and alerts are shown in the app UI. The current `NotificationService` only logs scheduling/cancellation requests; it does not schedule or deliver operating-system notifications. The Settings reminder toggle and time are saved as preferences, but do not trigger background alerts.
 - **Local Storage Scope:** Data is persisted locally on the device via `SharedPreferences` and atomic JSON serialization. No cloud synchronization is performed, guaranteeing complete privacy and zero data leakage.
 
 ---

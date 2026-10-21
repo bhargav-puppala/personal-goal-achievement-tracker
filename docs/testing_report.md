@@ -48,22 +48,16 @@ The quality assurance strategy utilizes an automated test pyramid comprising:
 
 ---
 
-## 3. Static Code Analysis Verification
+## 3. Final Verification Attempt
 
-Static analysis was performed using the standard Flutter and Dart analyzer rules:
+The requested commands were each invoked once. They produced no output and remained active beyond several minutes, so each active process was interrupted. No result is claimed for these attempts.
 
-```bash
-flutter analyze
-```
-
-**Result:**
-```text
-Analyzing Flutter-Project...                                    
-No issues found! (ran in 3.8s)
-```
-- **Zero compiler warnings**
-- **Zero lint errors**
-- **Zero deprecated API usages**
+| Command | Outcome |
+|---|---|
+| `dart format .` | Interrupted after more than four minutes with no output |
+| `flutter analyze` | Interrupted after more than three minutes with no output |
+| `flutter test` | Interrupted after about two minutes with no output |
+| `flutter build web` | Interrupted after about two minutes with no output |
 
 ---
 

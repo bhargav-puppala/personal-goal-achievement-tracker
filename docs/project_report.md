@@ -191,52 +191,19 @@ Testing followed a two-tiered testing pyramid:
 
 ### Automated Test Execution Results
 
-```text
-00:00 +0: Goal & Milestone Model Logic Tests: Zero-milestone goal has 0% progress and is not completed automatically
-00:00 +1: Goal & Milestone Model Logic Tests: Progress percentage calculates correctly without division by zero
-00:00 +2: Goal & Milestone Model Logic Tests: Goal with all milestones completed is completed automatically
-00:00 +3: Goal & Milestone Model Logic Tests: Reopening a milestone reverts parent goal completion
-00:00 +4: Goal & Milestone Model Logic Tests: Overdue deadline calculation behaves correctly
-00:00 +5: Goal & Milestone Model Logic Tests: Goal JSON serialization and deserialization roundtrip
-00:00 +6: GoalProvider State Tests: Creating a goal with empty title throws ArgumentError
-00:00 +7: GoalProvider State Tests: Creating a goal adds to provider and storage with initial milestones
-00:00 +8: GoalProvider State Tests: Completing a milestone updates goal progress and logs activity record
-00:00 +9: GoalProvider State Tests: Completing all milestones completes the goal; reopening one reopens goal
-00:00 +10: GoalProvider State Tests: Daily Focus toggling persists and surfaces in dailyFocusItems
-00:00 +11: GoalProvider State Tests: Deleting a goal cleans up milestones and daily focus records
-00:00 +12: GoalProvider State Tests: Persistence survives reinitialization on fresh provider instance
-00:00 +13: GoalProvider State Tests: Analytics calculations reflect real dataset accurately
-00:00 +14: StreakCalculator Logic Tests: Empty completion timestamps returns zero streak
-00:00 +15: StreakCalculator Logic Tests: Completion today gives streak of 1
-00:00 +16: StreakCalculator Logic Tests: Completion yesterday preserves active streak of 1
-00:00 +17: StreakCalculator Logic Tests: Consecutive completions over 3 days yields streak 3
-00:00 +18: StreakCalculator Logic Tests: Missed day break in consistency resets current streak to 0
-00:00 +19: StreakCalculator Logic Tests: Multiple completions on the same day deduplicate and count as one day
-00:00 +20: Widget Tests: Dashboard loads and displays navigation shell with 3 tabs
-00:01 +21: All tests passed!
-```
+The existing test inventory contains 23 passing unit and widget tests. The final verification attempt for this submission did not complete; see `testing_report.md` for its exact status.
 
 ---
 
 ## 12. Application Screenshots
 
-### Screen 1: Home Dashboard & Daily Focus Checklist
-*(Screenshot Placeholder: Home dashboard with Live Overview metrics, Today's Focus checklist, and category filter chips)*
-
-### Screen 2: Goal Details & Milestone Progress
-*(Screenshot Placeholder: Goal Details view illustrating milestone checkboxes, deadline indicator, and progress bar)*
-
-### Screen 3: Performance Analytics & 7-Day Activity Chart
-*(Screenshot Placeholder: Analytics dashboard with Weekly Milestone completion bar chart and category breakdown)*
-
-### Screen 4: Settings, SDG Relevance, and Student Roll Number
-*(Screenshot Placeholder: Settings screen showing student roll number 24PA1A05I4, SDG 3 & 4 information cards, and theme switcher)*
+Screenshots are not included. Capture genuine screenshots from the running application for the Dashboard/Daily Focus, Goal Details/Milestones, Analytics, and Settings/SDG alignment sections before submission.
 
 ---
 
 ## 13. Limitations
 
-- Background local notifications rely on platform capability; on web and desktop, alarms are supported via in-app banners and status alerts.
+- Deadline status and alerts are presented in the app UI. `NotificationService` currently logs scheduling and cancellation requests only; no operating-system notifications are scheduled or delivered. The Settings reminder toggle and time are persisted preferences and do not trigger background alerts.
 - Offline-first architecture stores data locally on the host device. Cross-device syncing requires manual export/import of JSON backups.
 
 ---

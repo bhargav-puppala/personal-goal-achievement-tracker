@@ -50,7 +50,7 @@ The application employs **Decoupled Layered Architecture (MVVM)** to ensure high
 ### 2.2 Service Layer (`lib/services/`)
 - `IStorageService`: Defines interface contracts for atomic JSON persistence, export, and import.
 - `LocalStorageService`: Implements local persistence using device storage with serialization safety and error handling.
-- `INotificationService`: Contract for deadline reminders and alert dispatching with honest platform fallbacks.
+- `INotificationService`: Reminder-shaped interface. The current `NotificationService` logs schedule/cancel requests only; it does not deliver in-app alerts itself or schedule operating-system notifications. Deadline status and alerts are handled by the UI.
 
 ### 2.3 Repository Layer (`lib/repositories/`)
 - `GoalRepository`: Coordinates data operations between storage services and domain entities.

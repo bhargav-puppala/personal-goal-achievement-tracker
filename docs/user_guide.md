@@ -68,3 +68,6 @@ For academic faculty and lab evaluators, the app includes realistic demo data:
 ### 3.7 Switching Themes (Light / Dark Mode)
 1. On the **Settings** tab under **Appearance**, tap **Light**, **Dark**, or **System**.
 2. The entire application transitions smoothly with tailored contrast surfaces.
+
+### 3.8 Deadline Alerts and Reminder Settings
+The app displays deadline status and alerts in its interface. Settings also stores a reminder toggle and preferred time, but these preferences do not schedule background or operating-system notifications. `NotificationService` currently records scheduling/cancellation requests in debug output only.
